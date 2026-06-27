@@ -1,11 +1,8 @@
----
-layout: null
----
 
 <html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 <style>
 
@@ -121,13 +118,13 @@ body{
 
 <div class="buttonRow">
 
-<img id="nextButton" src="assets/1B.png">
+<img id="nextButton" src="assets/1B.png" />
 
-<img id="thirdButton" src="assets/2B.png">
+<img id="thirdButton" src="assets/2B.png" />
 
-<img id="fourthButton" src="assets/3B.png">
+<img id="fourthButton" src="assets/3B.png" />
 
-<img id="fifthButton" src="assets/4B.png">
+<img id="fifthButton" src="assets/4B.png" />
 
 
 </div>
@@ -150,3 +147,4 @@ document.getElementById("fourthButton").onclick=()=>{
 
 </body>
 </html>
+
