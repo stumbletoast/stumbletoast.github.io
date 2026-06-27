@@ -1,11 +1,7 @@
----
-layout: null
----
-
 <html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 <style>
 
@@ -81,6 +77,14 @@ body{
 }
 
 
+#shopButton {
+  width: 150px;
+  height: auto;
+  cursor: pointer;
+
+  transform: translate(250px, 300px);
+}
+
 /* スマホ用の設定もそのまま維持 */
 /* スマホ用の設定（ここを入れ替え） */
 @media (max-width:600px) {
@@ -109,6 +113,12 @@ body{
     transform: translate(-50px, 400px); /* 位置：ここを好きな数字に変えられます */
   }
 
+  #shopButton {
+  width: 20vw;
+  max-width: 150px;
+  transform: translate(30px, 300px);
+}
+
 } /* ← 最後に一回だけ閉じる */
 
 
@@ -121,13 +131,15 @@ body{
 
 <div class="buttonRow">
 
-<img id="nextButton" src="assets/1B.png">
+<img id="nextButton" src="assets/1B.png" />
 
-<img id="thirdButton" src="assets/2B.png">
+<img id="thirdButton" src="assets/2B.png" />
 
-<img id="fourthButton" src="assets/3B.png">
+<img id="fourthButton" src="assets/3B.png" />
 
-<img id="fifthButton" src="assets/4B.png">
+<img id="fifthButton" src="assets/4B.png" />
+
+<img id="shopButton" src="assets/shop.png" />
 
 
 </div>
@@ -146,7 +158,12 @@ document.getElementById("fourthButton").onclick=()=>{
   location.href="fourth.html"
 }
 
+document.getElementById("shopButton").onclick=()=>{
+  location.href="shop.html"
+}
+
 </script>
 
 </body>
 </html>
+
