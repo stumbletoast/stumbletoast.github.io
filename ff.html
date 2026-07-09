@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tokyo Time Page</title>
+  <style>
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+
+    .scroll-bg {
+      position: relative;
+      width: 100%;
+      min-height: 100vh; 
+      background: url('assets/haikei4.png') no-repeat center top;
+      background-size: cover;
+      background-attachment: fixed; 
+      padding-top: 180px; 
+      padding-bottom: 100px;
+    }
+
+    #backButton {
+      width: 250px;
+      position: fixed;
+      top: 80px;
+      left: 20px;
+      cursor: pointer;
+      z-index: 100;
+    }
+
+    /* 🔹 画像を並べるコンテナ */
+    .object-container {
+      display: flex;
+      flex-wrap: wrap;       
+      justify-content: center; 
+      align-items: center;  
+      gap: 30px;            
+      padding: 20px;
+      max-width: 1400px;    
+      margin: 0 auto;       
+    }
+
+    /* 🔹 画像の共通設定 */
+    .object {
+      width: 250px;        
+      height: auto;
+      transition: width 0.2s ease; 
+    }
+
+    /* スマホ用調整 */
+    @media (max-width: 700px) {
+      .scroll-bg {
+        padding-top: 130px;
+      }
+
+      #backButton {
+        width: 160px;
+        top: 30px;
+        left: 10px;
+      }
+      
+      .object-container {
+        /* 🔹 スマホでの画像の隙間を調整 */
+        gap: 15px; 
+        padding: 10px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <img id="backButton" src="assets/back.png" alt="戻る">
+
+  <div class="scroll-bg">
+    <div class="object-container">
+        <img src="assets/ff1.png" class="object large" loading="lazy">
+        <img src="assets/ff2.png" class="object large" loading="lazy">
+        <img src="assets/ff3.png" class="object large" loading="lazy">
+        <img src="assets/ff4.png" class="object" loading="lazy">
+        <img src="assets/ff5.png" class="object large" loading="lazy">
+        <img src="assets/ff6.png" class="object" loading="lazy">
+        <img src="assets/ff7.png" class="object large" loading="lazy">
+        <img src="assets/ff8.png" class="object large" loading="lazy">
+    </div>
+  </div>
+    
+  <script>
+    // 戻るボタンの処理
+    document.getElementById('backButton').onclick = () => {
+      location.href = "index.html";
+    };
+
+    // 🔹 画面サイズ（スマホかPCか）を判定する関数
+    const isMobile = () => window.innerWidth <= 700;
+
+    // 🔹 ランダムサイズを適用する処理
+    const applyRandomSizes = () => {
+      const objects = document.querySelectorAll('.object');
+
+      objects.forEach(img => {
+        let min, max, unit;
+
+        if (isMobile()) {
+          // 📱 【修正箇所】スマホ表示のサイズ計算を％に変更
+          // 2枚〜3枚がランダムに横に並び、上下に凸凹とズレるようにサイズを調整します
+          unit = '%';
+          if (img.classList.contains('large')) {
+            min = 40; // 画面幅に対して約40%（横に2枚並ぶサイズ）
+            max = 45; // 画面幅に対して約45%
+          } else {
+            min = 25; // 画面幅に対して約25%（横に3枚並ぶ小さめサイズ）
+            max = 35; // 画面幅に対して約35%
+          }
+        } else {
+          // 💻 PC用のサイズ範囲 (一切変更していません)
+          unit = 'px';
+          if (img.classList.contains('large')) {
+            min = 350; 
+            max = 500; 
+          } else {
+            min = 260; 
+            max = 340; 
+          }
+        }
+
+        const randomSize = Math.floor(Math.random() * (max - min + 1)) + min;
+        img.style.width = randomSize + unit;
+      });
+    };
+
+    // ページ読み込み時に実行
+    window.addEventListener('DOMContentLoaded', applyRandomSizes);
+    
+    // 画面の横幅が変わった時だけ再計算（スクロール時のブレ防止）
+    let lastWidth = window.innerWidth;
+    window.addEventListener('resize', () => {
+      if (window.innerWidth !== lastWidth) {
+        lastWidth = window.innerWidth;
+        applyRandomSizes();
+      }
+    });
+  </script>
+
+</body>
+</html>

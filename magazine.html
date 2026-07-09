@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Page</title>
+
+<style>
+  /* 基本設定：余白をなくし、画面いっぱいに広げる */
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden; /* 横スクロール禁止 */
+  }
+
+  /* 🔹 背景：haikei2.png に設定 */
+  body {
+    background-image: url('assets/haikeip.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* スクロールしても背景を固定 */
+    
+    /* 追記：中央配置を有効にするための設定 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* 🔹 戻るボタンのスタイル */
+  #backButton {
+    width: 250px;
+    position: fixed;
+    top: 80px;
+    left: 20px;
+    cursor: pointer;
+    z-index: 100; /* 他の要素より上に表示 */
+  }
+
+  /* 🔹 【修正】中央の画像ボタンのスタイル */
+  #ffbutton {
+    width: 500px; /* 💻 PCでのサイズ：200pxから120pxに縮小（お好みで調整してください） */
+    max-width: 50%; /* 画面からはみ出さないようにガード */
+    cursor: pointer;
+    z-index: 10;
+  }
+
+  /* 🔹 スマホ用の調整 */
+  @media (max-width: 600px) {
+    #backButton {
+      width: 160px;
+      top: 50px;
+      left: 10px; /* 見切れないように少し調整 */
+    }
+    
+    /* 【修正】スマホ用の中央画像サイズ */
+    #ffbutton {
+      width: 200px; /* 📱 スマホでのサイズ：300pxから90pxに大幅縮小 */
+    }
+    
+    body {
+      background-position: center top;
+    }
+  }
+</style>
+</head>
+
+<body>
+
+  <img id="backButton" src="assets/back.png" alt="戻る">
+
+  <img id="ffbutton" src="assets/ffbutton.png" alt="次へ">
+
+  <script>
+    // 戻るボタンをクリックした時、index（ルート）に戻る
+    document.getElementById('backButton').onclick = () => {
+      location.href = "index.html";
+    };
+
+    // 中央の画像をクリックした時、ff.html に遷移
+    document.getElementById('ffbutton').onclick = () => {
+      location.href = "ff.html";
+    };
+  </script>
+
+</body>
+</html>

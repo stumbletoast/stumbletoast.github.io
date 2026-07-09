@@ -37,7 +37,7 @@ body{
   width:400px;
   cursor:pointer;
 
-  transform: translate(-400px, -200px);
+  transform: translate(-200px, -200px);
 }
 
 /* --- 修正箇所：#thirdButton のみ --- */
@@ -63,7 +63,7 @@ body{
   /* translate(横方向の移動, 縦方向の移動) */
   /* 例: 右に50px、下に100px移動したい場合 -> translate(50px, 100px) */
   /* 例: 左に20px、上に30px移動したい場合 -> translate(-20px, -30px) */
-  transform: translate(-500px, 400px); 
+  transform: translate(-300px, 400px); 
 }
 
 #fifthButton {
@@ -78,13 +78,28 @@ body{
   transform: translate(50px, 600px); 
 }
 
-
 #shopButton {
   width: 200px;
   height: auto;
   cursor: pointer;
 
-  transform: translate(-100px,90px)
+  transform: translate(-110px,90px)
+}
+
+#exhibitionButton {
+  width: 180px;
+  height: auto;
+  cursor: pointer;
+
+  transform: translate(-500px,500px)
+}
+
+#magazineButton {
+  width: 40px;
+  height: auto;
+  cursor: pointer;
+
+  transform: translate(-900px,600px)
 }
 
 /* スマホ用の設定もそのまま維持 */
@@ -94,19 +109,19 @@ body{
   #nextButton {
     width: 70vw;
     max-width: 250px;
-    transform: translate(0, 0);
+    transform: translate(70px, 0);
   }
 
   #thirdButton {
-    width: 8vw; /* サイズ：ここを好きな数字に変えられます */
+    width: 5vw; /* サイズ：ここを好きな数字に変えられます */
     max-width: 80px;
-    transform: translate(0px, 0px); /* 位置：ここを好きな数字に変えられます */
+    transform: translate(0px, -20px); /* 位置：ここを好きな数字に変えられます */
   }
 
   #fourthButton {
     width: 15vw; /* サイズ：ここを好きな数字に変えられます */
     max-width: 150px;
-    transform: translate(-20px, 500px); /* 位置：ここを好きな数字に変えられます */
+    transform: translate(-20px, 220px); /* 位置：ここを好きな数字に変えられます */
   }
 
   #fifthButton {
@@ -118,7 +133,19 @@ body{
   #shopButton {
   width: 28vw;
   max-width: 150px;
-  transform: translate(-100px, 300px);
+  transform: translate(-60px, 300px);
+  }
+
+  #exhibitionButton {
+    width: 30vw; /* サイズ：ここを好きな数字に変えられます */
+    max-width: 150px;
+    transform: translate(-170px, 100px); /* 位置：ここを好きな数字に変えられます */
+  }
+
+  #magazineButton {
+  width: 4vw;
+  max-width: 100px;
+  transform: translate(-200px, 500px);
 }
 
 } /* ← 最後に一回だけ閉じる */
@@ -143,6 +170,13 @@ body{
 
 <img id="shopButton" src="assets/shop.png" />
 
+<img id="exhibitionButton" src="assets/exhibition.png" />
+
+<img id="magazineButton" src="assets/magazine.png" />
+
+
+
+
 
 </div>
 
@@ -164,9 +198,18 @@ document.getElementById("shopButton").onclick=()=>{
   location.href="shop.html"
 }
 
+document.getElementById("exhibitionButton").onclick=()=>{
+  location.href="nextphoto.html"
+}
+
+document.getElementById("magazineButton").onclick=()=>{
+  location.href="magazine.html"
+}
+
 </script>
 
 </body>
 </html>
+
 
 

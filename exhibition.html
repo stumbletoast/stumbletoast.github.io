@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tokyo Time Page</title>
+  <style>
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+
+    .scroll-bg {
+      position: relative;
+      width: 100%;
+      min-height: 100vh; 
+      background: url('assets/haikei4.png') no-repeat center top;
+      background-size: cover;
+      background-attachment: fixed; 
+      padding-top: 180px; /* 戻るボタンが大きいので余白を少し増やしました */
+      padding-bottom: 100px;
+    }
+
+    #backButton {
+      width: 250px;
+      position: fixed;
+      top: 80px;
+      left: 20px;
+      cursor: pointer;
+      z-index: 100;
+    }
+
+    /* 🔹 画像を並べるコンテナ */
+    .object-container {
+      display: flex;
+      flex-wrap: wrap;       
+      justify-content: center; 
+      align-items: center;  /* 🔹 上下中央揃えにすると、大小の差が綺麗に馴染みます */
+      gap: 30px;            /* 隙間も少し広げてゆったりさせました */
+      padding: 20px;
+      max-width: 1400px;    /* 画像が大きくなるので最大幅を広げました */
+      margin: 0 auto;       
+    }
+
+    /* 🔹 画像の共通設定（基本ベースのサイズ） */
+    .object {
+      width: 250px;        /* JSが動かない場合のフォールバック */
+      height: auto;
+      transition: width 0.2s ease; /* サイズ変更を滑らかに */
+    }
+
+    /* スマホ用調整 */
+    @media (max-width: 700px) {
+      .scroll-bg {
+        padding-top: 130px;
+      }
+
+      #backButton {
+        width: 160px;
+        top: 30px;
+        left: 10px;
+      }
+      
+      .object-container {
+        gap: 15px; 
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <img id="backButton" src="assets/back.png" alt="戻る">
+
+  <div class="scroll-bg">
+    <div class="object-container">
+        <img src="assets/1e.png" class="object large" loading="lazy">
+        <img src="assets/2e.png" class="object" loading="lazy">
+        <img src="assets/3e.png" class="object" loading="lazy">
+        <img src="assets/4e.png" class="object large" loading="lazy">
+        <img src="assets/5e.png" class="object large" loading="lazy">
+        <img src="assets/6e.png" class="object large" loading="lazy">
+        <img src="assets/7e.png" class="object" loading="lazy">
+        <img src="assets/8e.png" class="object" loading="lazy">
+        <img src="assets/9e.png" class="object large" loading="lazy">
+        <img src="assets/10e.png" class="object" loading="lazy">
+        <img src="assets/11e.png" class="object" loading="lazy">
+        <img src="assets/12e.png" class="object large" loading="lazy">
+        <img src="assets/13e.png" class="object large" loading="lazy">
+        <img src="assets/14e.png" class="object" loading="lazy">
+        <img src="assets/15e.png" class="object" loading="lazy">
+        <img src="assets/16e.png" class="object" loading="lazy">
+        <img src="assets/17e.png" class="object" loading="lazy">
+        <img src="assets/18e.png" class="object large" loading="lazy">
+        <img src="assets/19e.png" class="object" loading="lazy">
+        <img src="assets/20e.png" class="object" loading="lazy">
+        <img src="assets/21e.png" class="object" loading="lazy">
+        <img src="assets/22e.png" class="object" loading="lazy">
+        <img src="assets/23e.png" class="object" loading="lazy">
+        <img src="assets/24e.png" class="object" loading="lazy">
+        <img src="assets/25e.png" class="object" loading="lazy">
+    </div>
+  </div>
+    
+  <script>
+    // 戻るボタンの処理
+    document.getElementById('backButton').onclick = () => {
+      location.href = "index.html";
+    };
+
+    // 🔹 画面サイズ（スマホかPCか）を判定する関数
+    const isMobile = () => window.innerWidth <= 700;
+
+    // 🔹 ランダムサイズを適用する処理
+    const applyRandomSizes = () => {
+      const objects = document.querySelectorAll('.object');
+
+      objects.forEach(img => {
+        let min, max, unit;
+
+        if (isMobile()) {
+          // 📱 スマホ用のサイズ範囲 (vw単位)
+          unit = 'vw';
+          if (img.classList.contains('large')) {
+            min = 55; // largeの最小サイズ (55vw)
+            max = 80; // largeの最大サイズ (80vw)
+          } else {
+            min = 30; // 通常の最小サイズ (30vw)
+            max = 48; // 通常の最大サイズ (48vw)
+          }
+        } else {
+          // 💻 PC用のサイズ範囲 (px単位)
+          unit = 'px';
+          if (img.classList.contains('large')) {
+            min = 350; // largeの最小サイズ (350px)
+            max = 500; // largeの最大サイズ (500px)
+          } else {
+            min = 180; // 通常の最小サイズ (180px)
+            max = 280; // 通常の最大サイズ (280px)
+          }
+        }
+
+        // min から max の間でランダムな数値を計算して適用
+        const randomSize = Math.floor(Math.random() * (max - min + 1)) + min;
+        img.style.width = randomSize + unit;
+      });
+    };
+
+    // ページ読み込み時に実行
+    window.addEventListener('DOMContentLoaded', applyRandomSizes);
+    
+    // 🔹 【修正箇所】スマホのスクロール（メニューバー開閉）でサイズが変わらないよう、横幅が本当に変わった時だけ再計算する
+    let lastWidth = window.innerWidth;
+    window.addEventListener('resize', () => {
+      if (window.innerWidth !== lastWidth) {
+        lastWidth = window.innerWidth;
+        applyRandomSizes();
+      }
+    });
+  </script>
+
+</body>
+</html>
