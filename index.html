@@ -102,6 +102,15 @@ body{
   transform: translate(-900px,600px)
 }
 
+#posterButton {
+  width: 300px;
+  height: auto;
+  cursor: pointer;
+
+  position: absolute;
+  transform: translate(400px, 300px);
+}
+
 /* スマホ用の設定もそのまま維持 */
 /* スマホ用の設定（ここを入れ替え） */
 @media (max-width:600px) {
@@ -143,9 +152,16 @@ body{
   }
 
   #magazineButton {
-  width: 4vw;
+  width: 6vw;
   max-width: 100px;
   transform: translate(-200px, 500px);
+}
+
+#posterButton {
+  width: 160px;
+  max-width: 180px;
+  position: absolute;
+  transform: translate(100px, -70px);
 }
 
 } /* ← 最後に一回だけ閉じる */
@@ -173,6 +189,9 @@ body{
 <img id="exhibitionButton" src="assets/exhibition.png" />
 
 <img id="magazineButton" src="assets/magazine.png" />
+
+<img id="posterButton" src="assets/poster.png" />
+
 
 
 
@@ -204,6 +223,10 @@ document.getElementById("exhibitionButton").onclick=()=>{
 
 document.getElementById("magazineButton").onclick=()=>{
   location.href="magazine.html"
+}
+
+document.getElementById("posterButton").onclick=()=>{
+  location.href="poster.html"
 }
 
 </script>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Page</title>
+
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100%;
+    overflow-x: hidden;
+  }
+
+  body {
+    background-image: url('assets/haikeip.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 60px 20px 80px;
+    box-sizing: border-box;
+  }
+
+  #backButton {
+    width: 250px;
+    position: fixed;
+    top: 80px;
+    left: 20px;
+    cursor: pointer;
+    z-index: 100;
+  }
+
+  /* 中央のポスター */
+  #poster {
+    display: block;
+    width: min(500px, 80vw);
+    height: auto;
+    margin: 20px auto 40px;
+  }
+
+  @media (max-width: 600px) {
+    body {
+      background-position: center top;
+      padding-top: 120px;
+    }
+
+    #backButton {
+      width: 160px;
+      top: 50px;
+      left: 10px;
+    }
+
+    #poster {
+      width: 85vw;
+      margin-bottom: 30px;
+    }
+  }
+</style>
+</head>
+
+<body>
+
+  <img id="backButton" src="assets/back.png" alt="戻る">
+
+  <main>
+    <img id="poster" src="assets/leonposter.png" alt="Leon">
+  </main>
+
+  <script>
+    document.getElementById('backButton').onclick = () => {
+      location.href = "index.html";
+    };
+  </script>
+
+</body>
+</html>
