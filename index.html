@@ -6,114 +6,95 @@
 <title>STUMBLETOAST!!</title>
 
 <style>
-
-body{
-  margin:0;
-  background:#ffffff;
-  font-family:sans-serif;
+body {
+  margin: 0;
+  background: #ffffff;
+  font-family: sans-serif;
 }
 
 /* タイトル */
-
-#title{
-  text-align:center;
-  margin-top:60px;
-  font-size:1.5em;
-  letter-spacing:0.2em;
+#title {
+  text-align: center;
+  margin-top: 60px;
+  font-size: 1.5em;
+  letter-spacing: 0.2em;
 }
 
 /* ボタンエリア */
-
-.buttonRow{
-  margin-top:100px;
-  display:flex;
-  justify-content:center;
+.buttonRow {
+  margin-top: 100px;
+  display: flex;
+  justify-content: center;
   align-items: flex-start;
 }
 
 /* ボタン */
-
-#nextButton{
-  width:400px;
-  cursor:pointer;
-
+#nextButton {
+  width: 400px;
+  cursor: pointer;
   transform: translate(-200px, -200px);
 }
 
-/* --- 修正箇所：#thirdButton のみ --- */
-
 #thirdButton {
-  width: 50px;  /* 横幅はあなたの指定通り */
-  height: auto; /* ★【重要】これを追加して比率を保つ */
+  width: 50px;
+  height: auto;
   cursor: pointer;
-
-  /* ★【重要】ここを自由に変更して位置を調整してください */
-  /* translate(横方向の移動, 縦方向の移動) */
-  /* 例: 右に50px、下に100px移動したい場合 -> translate(50px, 100px) */
-  /* 例: 左に20px、上に30px移動したい場合 -> translate(-20px, -30px) */
-  transform: translate(0px, 0px); 
+  transform: translate(0px, 0px);
 }
 
 #fourthButton {
-  width: 100px;  /* 横幅はあなたの指定通り */
-  height: auto; /* ★【重要】これを追加して比率を保つ */
+  width: 100px;
+  height: auto;
   cursor: pointer;
-
-  /* ★【重要】ここを自由に変更して位置を調整してください */
-  /* translate(横方向の移動, 縦方向の移動) */
-  /* 例: 右に50px、下に100px移動したい場合 -> translate(50px, 100px) */
-  /* 例: 左に20px、上に30px移動したい場合 -> translate(-20px, -30px) */
-  transform: translate(-300px, 400px); 
+  transform: translate(-300px, 400px);
 }
 
 #fifthButton {
-  width: 200px;  /* 横幅はあなたの指定通り */
-  height: auto; /* ★【重要】これを追加して比率を保つ */
+  width: 200px;
+  height: auto;
   cursor: pointer;
-
-  /* ★【重要】ここを自由に変更して位置を調整してください */
-  /* translate(横方向の移動, 縦方向の移動) */
-  /* 例: 右に50px、下に100px移動したい場合 -> translate(50px, 100px) */
-  /* 例: 左に20px、上に30px移動したい場合 -> translate(-20px, -30px) */
-  transform: translate(50px, 600px); 
+  transform: translate(50px, 600px);
 }
 
 #shopButton {
   width: 200px;
   height: auto;
   cursor: pointer;
-
-  transform: translate(-110px,90px)
+  transform: translate(-110px, 90px);
 }
 
 #exhibitionButton {
   width: 180px;
   height: auto;
   cursor: pointer;
-
-  transform: translate(-500px,500px)
+  transform: translate(-500px, 500px);
 }
 
 #magazineButton {
   width: 40px;
   height: auto;
   cursor: pointer;
-
-  transform: translate(-900px,600px)
+  transform: translate(-900px, 600px);
 }
 
 #posterButton {
   width: 300px;
   height: auto;
   cursor: pointer;
-
   position: absolute;
   transform: translate(400px, 300px);
 }
 
-/* スマホ用の設定もそのまま維持 */
-/* スマホ用の設定（ここを入れ替え） */
-@media (max-width:600px) {
+/* 運勢ボタン */
+#fortuneButton {
+  width: 130px;
+  height: auto;
+  cursor: pointer;
+  transform: translate(-1340px, 600px);
+}
+
+/* スマホ用 */
+@media (max-width: 600px) {
 
   #nextButton {
     width: 70vw;
@@ -122,49 +103,58 @@ body{
   }
 
   #thirdButton {
-    width: 5vw; /* サイズ：ここを好きな数字に変えられます */
+    width: 5vw;
     max-width: 80px;
-    transform: translate(0px, -20px); /* 位置：ここを好きな数字に変えられます */
+    transform: translate(0px, -20px);
   }
 
   #fourthButton {
-    width: 15vw; /* サイズ：ここを好きな数字に変えられます */
+    width: 15vw;
     max-width: 150px;
-    transform: translate(-20px, 220px); /* 位置：ここを好きな数字に変えられます */
+    transform: translate(-20px, 220px);
   }
 
   #fifthButton {
-    width: 20vw; /* サイズ：ここを好きな数字に変えられます */
+    width: 20vw;
     max-width: 150px;
-    transform: translate(-50px, 400px); /* 位置：ここを好きな数字に変えられます */
+    transform: translate(-50px, 400px);
   }
 
   #shopButton {
-  width: 28vw;
-  max-width: 150px;
-  transform: translate(-60px, 300px);
+    width: 28vw;
+    max-width: 150px;
+    transform: translate(-60px, 300px);
   }
 
   #exhibitionButton {
-    width: 30vw; /* サイズ：ここを好きな数字に変えられます */
+    width: 30vw;
     max-width: 150px;
-    transform: translate(-170px, 100px); /* 位置：ここを好きな数字に変えられます */
+    transform: translate(-170px, 100px);
   }
 
   #magazineButton {
-  width: 6vw;
-  max-width: 100px;
-  transform: translate(-200px, 500px);
-}
+    width: 6vw;
+    max-width: 100px;
+    transform: translate(-200px, 500px);
+  }
 
-#posterButton {
-  width: 160px;
-  max-width: 180px;
+  #posterButton {
+    width: 160px;
+    max-width: 180px;
+    position: absolute;
+    transform: translate(100px, -70px);
+  }
+
+  #fortuneButton {
+  width: 18vw;
+  max-width: 150px;
   position: absolute;
-  transform: translate(100px, -70px);
+  transform: translate(-140px, 500px);
 }
 
-} /* ← 最後に一回だけ閉じる */
+
+
+  }
 
 
 </style>
@@ -176,63 +166,61 @@ body{
 
 <div class="buttonRow">
 
-<img id="nextButton" src="assets/1B.png" />
+  <img id="nextButton" src="assets/1B.png" alt="次のページ">
 
-<img id="thirdButton" src="assets/2B.png" />
+  <img id="thirdButton" src="assets/2B.png" alt="ページ2">
 
-<img id="fourthButton" src="assets/3B.png" />
+  <img id="fourthButton" src="assets/3B.png" alt="ページ3">
 
-<img id="fifthButton" src="assets/4B.png" />
+  <img id="fifthButton" src="assets/4B.png" alt="ページ4">
 
-<img id="shopButton" src="assets/shop.png" />
+  <img id="shopButton" src="assets/shop.png" alt="ショップ">
 
-<img id="exhibitionButton" src="assets/exhibition.png" />
+  <img id="exhibitionButton" src="assets/exhibition.png" alt="展示">
 
-<img id="magazineButton" src="assets/magazine.png" />
+  <img id="magazineButton" src="assets/magazine.png" alt="雑誌">
 
-<img id="posterButton" src="assets/poster.png" />
+  <img id="posterButton" src="assets/poster.png" alt="ポスター">
 
+  <img id="fortuneButton" src="assets/f.png" alt="今日の運勢">
 
-
-
-
+  
 
 </div>
 
 <script>
+document.getElementById("nextButton").onclick = () => {
+  location.href = "next.html";
+};
 
-document.getElementById("nextButton").onclick=()=>{
-  location.href="next.html"
-}
+document.getElementById("thirdButton").onclick = () => {
+  location.href = "third.html";
+};
 
-document.getElementById("thirdButton").onclick=()=>{
-  location.href="third.html"
-}
+document.getElementById("fourthButton").onclick = () => {
+  location.href = "fourth.html";
+};
 
-document.getElementById("fourthButton").onclick=()=>{
-  location.href="fourth.html"
-}
+document.getElementById("shopButton").onclick = () => {
+  location.href = "shop.html";
+};
 
-document.getElementById("shopButton").onclick=()=>{
-  location.href="shop.html"
-}
+document.getElementById("exhibitionButton").onclick = () => {
+  location.href = "nextphoto.html";
+};
 
-document.getElementById("exhibitionButton").onclick=()=>{
-  location.href="nextphoto.html"
-}
+document.getElementById("magazineButton").onclick = () => {
+  location.href = "magazine.html";
+};
 
-document.getElementById("magazineButton").onclick=()=>{
-  location.href="magazine.html"
-}
+document.getElementById("posterButton").onclick = () => {
+  location.href = "poster.html";
+};
 
-document.getElementById("posterButton").onclick=()=>{
-  location.href="poster.html"
-}
-
+document.getElementById("fortuneButton").onclick = () => {
+  location.href = "rureto.html";
+};
 </script>
 
 </body>
 </html>
-
-
-
