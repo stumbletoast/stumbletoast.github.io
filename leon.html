@@ -44,6 +44,87 @@
     margin: 20px auto 40px;
   }
 
+  /* ポスター下の写真 */
+  #photoGallery {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: min(700px, 90vw);
+  }
+
+  .galleryPhoto {
+    display: block;
+    width: 300px;
+    max-width: 90%;
+    height: auto;
+    object-fit: contain;
+    cursor: pointer;
+  }
+
+  /* 写真の下のテキスト */
+  #viewPhotos {
+    margin: 12px 0 0;
+    font-size: 14px;
+    text-align: center;
+    letter-spacing: 0.08em;
+    font-family: sans-serif;
+  }
+
+  /* 写真の拡大表示 */
+  #lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    background: rgba(255, 255, 255, 0.65);
+    justify-content: center;
+    align-items: center;
+  }
+
+  #lightbox.open {
+    display: flex;
+  }
+
+  #largePhoto {
+    display: block;
+    width: auto;
+    height: auto;
+    max-width: 85vw;
+    max-height: 90vh;
+    object-fit: contain;
+  }
+
+  .arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: black;
+    background: transparent;
+    border: none;
+    font-size: 48px;
+    cursor: pointer;
+    padding: 20px;
+  }
+
+  #prevButton {
+    left: 20px;
+  }
+
+  #nextButton {
+    right: 20px;
+  }
+
+  #closeButton {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    color: black;
+    background: transparent;
+    border: none;
+    font-size: 40px;
+    cursor: pointer;
+  }
+
   @media (max-width: 600px) {
     body {
       background-position: center top;
@@ -60,6 +141,28 @@
       width: 85vw;
       margin-bottom: 30px;
     }
+
+    .galleryPhoto {
+      width: 200px;
+    }
+
+    #largePhoto {
+      max-width: 90vw;
+      max-height: 82vh;
+    }
+
+    .arrow {
+      font-size: 36px;
+      padding: 10px;
+    }
+
+    #prevButton {
+      left: 0;
+    }
+
+    #nextButton {
+      right: 0;
+    }
   }
 </style>
 </head>
@@ -70,12 +173,80 @@
 
   <main>
     <img id="poster" src="assets/leonposter.png" alt="Leon">
+
+    <div id="photoGallery">
+      <img class="galleryPhoto" src="assets/1S.png" alt="写真1">
+    </div>
+
+    <p id="viewPhotos">View Photos</p>
   </main>
+
+  <div id="lightbox">
+    <button id="closeButton" aria-label="閉じる">×</button>
+    <button class="arrow" id="prevButton" aria-label="前の写真">‹</button>
+    <img id="largePhoto" src="" alt="拡大写真">
+    <button class="arrow" id="nextButton" aria-label="次の写真">›</button>
+  </div>
 
   <script>
     document.getElementById('backButton').onclick = () => {
       location.href = "index.html";
     };
+
+    const photos = [
+      "assets/1S.png",
+      "assets/3S.png",
+      "assets/4S.png",
+      "assets/5S.png",
+      "assets/6S.png",
+      "assets/7S.png",
+      "assets/8S.png",
+      "assets/9S.png"
+    ];
+
+    const lightbox = document.getElementById('lightbox');
+    const largePhoto = document.getElementById('largePhoto');
+    let currentIndex = 0;
+
+    function showPhoto(index) {
+      currentIndex = (index + photos.length) % photos.length;
+      largePhoto.src = photos[currentIndex];
+    }
+
+    document.querySelector('.galleryPhoto').onclick = () => {
+      showPhoto(0);
+      lightbox.classList.add('open');
+    };
+
+    document.getElementById('prevButton').onclick = () => {
+      showPhoto(currentIndex - 1);
+    };
+
+    document.getElementById('nextButton').onclick = () => {
+      showPhoto(currentIndex + 1);
+    };
+
+    document.getElementById('closeButton').onclick = () => {
+      lightbox.classList.remove('open');
+    };
+
+    lightbox.onclick = (event) => {
+      if (event.target === lightbox) {
+        lightbox.classList.remove('open');
+      }
+    };
+
+    document.addEventListener('keydown', (event) => {
+      if (!lightbox.classList.contains('open')) return;
+
+      if (event.key === 'ArrowLeft') {
+        showPhoto(currentIndex - 1);
+      } else if (event.key === 'ArrowRight') {
+        showPhoto(currentIndex + 1);
+      } else if (event.key === 'Escape') {
+        lightbox.classList.remove('open');
+      }
+    });
   </script>
 
 </body>

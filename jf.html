@@ -44,7 +44,7 @@
     margin: 20px auto 40px;
   }
 
-  /* 下部の写真：元の比率を保って大きめに表示 */
+  /* 下部の写真 */
   #photoGallery {
     display: flex;
     justify-content: center;
@@ -58,6 +58,15 @@
     height: auto;
     object-fit: contain;
     cursor: pointer;
+  }
+
+  /* 写真の下のテキスト */
+  #viewPhotos {
+    margin: 12px 0 0;
+    font-size: 14px;
+    text-align: center;
+    letter-spacing: 0.08em;
+    font-family: sans-serif;
   }
 
   /* 写真の拡大表示 */
@@ -167,6 +176,8 @@
     <div id="photoGallery">
       <img class="galleryPhoto" src="assets/1paris.JPG" alt="写真1">
     </div>
+
+    <p id="viewPhotos">View Photos</p>
   </main>
 
   <div id="lightbox">
