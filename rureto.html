@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -57,7 +58,7 @@
     left: 0;
   }
 
-  /* 丸の左上から刺さる矢印 */
+  /* 矢印 */
   #yajirushi {
     position: absolute;
     width: 100%;
@@ -96,7 +97,6 @@
       width: 90vw;
     }
 
-    /* スマホ表示時だけ矢印を小さくする */
     #yajirushi {
       width: 90%;
       top: -50px;
@@ -111,6 +111,7 @@
 <img id="backButton" src="assets/back.png" alt="戻る">
 
 <main>
+
   <!-- ルーレット -->
   <div id="roulette">
     <img id="maru" src="assets/maru.png" alt="ルーレット">
@@ -119,17 +120,53 @@
 
   <!-- 運勢の結果 -->
   <img id="result" src="" alt="今日の運勢">
+
 </main>
 
 <script>
+
+  // ==================================
+  // Cloudflare Workerに回数を記録
+  // ==================================
+
+  async function recordSpin() {
+    try {
+      const response = await fetch(
+        "https://stumbletoastcounter.stumbletoast-stumbletoast.workers.dev/spin",
+        {
+          method: "POST"
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Counter API error: " + response.status);
+      }
+
+      console.log("ルーレット回数を記録しました！");
+
+    } catch (error) {
+      console.error("記録に失敗しました:", error);
+    }
+  }
+
+
+  // ==================================
   // 戻るボタン
+  // ==================================
+
   document.getElementById('backButton').onclick = () => {
     location.href = "index.html";
   };
 
+
+  // ==================================
+  // ルーレットの設定
+  // ==================================
+
   const roulette = document.getElementById('roulette');
   const maru = document.getElementById('maru');
   const result = document.getElementById('result');
+
 
   // 運勢の画像
   const fortunes = [
@@ -142,35 +179,49 @@
   let isSpinning = false;
   let rotation = 0;
 
+
+  // ==================================
   // ルーレットを回す
+  // ==================================
+
   function spinRoulette() {
+
+    // 回転中の連続クリックを防止
     if (isSpinning) return;
 
     isSpinning = true;
+
+    // Cloudflareに回数を記録
+    recordSpin();
 
     // ルーレットを表示して結果を隠す
     roulette.style.display = "block";
     result.style.display = "none";
 
-    // 以前の回転角度を維持して、アニメーションをリセット
+    // 回転角度を維持してリセット
     maru.style.transition = "none";
     maru.style.transform = `rotate(${rotation}deg)`;
 
-    // ブラウザにリセットを反映させる
     maru.offsetWidth;
 
-    // 何周か回転して、ランダムな角度で停止
+    // 5周以上ランダムに回転
     const extraRotation = 360 * 5 + Math.random() * 360;
+
     rotation += extraRotation;
 
-    // 一定速度で2.5秒間回転
+    // 2.5秒間回転
     maru.style.transition = "transform 2.5s linear";
     maru.style.transform = `rotate(${rotation}deg)`;
 
-    // 回転が止まってから1秒後に結果を表示
+
+    // 回転終了後、1秒待って結果を表示
     setTimeout(() => {
+
       setTimeout(() => {
-        const randomIndex = Math.floor(Math.random() * fortunes.length);
+
+        const randomIndex = Math.floor(
+          Math.random() * fortunes.length
+        );
 
         result.src = fortunes[randomIndex];
 
@@ -178,15 +229,25 @@
         result.style.display = "block";
 
         isSpinning = false;
+
       }, 1000);
+
     }, 2500);
+
   }
 
-  // 丸をタップしてスタート
+
+  // ==================================
+  // クリックイベント
+  // ==================================
+
+  // ルーレットをタップしてスタート
   roulette.onclick = spinRoulette;
 
-  // 結果画像をタップすると、すぐに次のルーレットが回る
+  // 結果画像をタップしてもう一度回す
   result.onclick = spinRoulette;
+
+
 </script>
 
 </body>
