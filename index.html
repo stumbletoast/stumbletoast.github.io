@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -147,16 +148,12 @@ body {
   }
 
   #fortuneButton {
-  width: 14vw;
-  max-width: 150px;
-  position: absolute;
-  transform: translate(-150px, 500px);
-}
-
-
-
+    width: 14vw;
+    max-width: 150px;
+    position: absolute;
+    transform: translate(-150px, 500px);
   }
-
+}
 
 </style>
 </head>
@@ -184,8 +181,6 @@ body {
   <img id="posterButton" src="assets/poster.png" alt="ポスター">
 
   <img id="fortuneButton" src="assets/f.png" alt="今日の運勢">
-
-  
 
 </div>
 
@@ -221,6 +216,35 @@ document.getElementById("posterButton").onclick = () => {
 document.getElementById("fortuneButton").onclick = () => {
   location.href = "rureto.html";
 };
+</script>
+
+<!-- アクセス数の記録 -->
+<script>
+(async function () {
+  try {
+    let visitorId = localStorage.getItem("stumbletoast_visitor_id");
+
+    if (!visitorId) {
+      visitorId = crypto.randomUUID();
+      localStorage.setItem("stumbletoast_visitor_id", visitorId);
+    }
+
+    await fetch(
+      "https://stumbletoastcounter.stumbletoast-stumbletoast.workers.dev/visit",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          visitorId: visitorId
+        })
+      }
+    );
+  } catch (error) {
+    console.error("アクセス記録に失敗しました:", error);
+  }
+})();
 </script>
 
 </body>
