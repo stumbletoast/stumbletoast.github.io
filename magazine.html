@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -6,62 +7,64 @@
 <title>Page</title>
 
 <style>
-  /* 基本設定：余白をなくし、画面いっぱいに広げる */
   html, body {
     margin: 0;
     padding: 0;
     width: 100%;
     height: 100%;
-    overflow-x: hidden; /* 横スクロール禁止 */
+    overflow-x: hidden;
   }
 
-  /* 🔹 背景：haikei2.png に設定 */
   body {
     background-image: url('assets/haikeip.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    background-attachment: fixed; /* スクロールしても背景を固定 */
-    
-    /* 追記：中央配置を有効にするための設定 */
+    background-attachment: fixed;
+
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 30px;
   }
 
-  /* 🔹 戻るボタンのスタイル */
+  /* 戻るボタン */
   #backButton {
     width: 250px;
     position: fixed;
     top: 80px;
     left: 20px;
     cursor: pointer;
-    z-index: 100; /* 他の要素より上に表示 */
+    z-index: 100;
   }
 
-  /* 🔹 【修正】中央の画像ボタンのスタイル */
-  #ffbutton {
-    width: 500px; /* 💻 PCでのサイズ：200pxから120pxに縮小（お好みで調整してください） */
-    max-width: 50%; /* 画面からはみ出さないようにガード */
+  /* 中央の画像ボタン */
+  #ffbutton,
+  #ffbutton2 {
+    width: 500px;
+    max-width: 50%;
     cursor: pointer;
     z-index: 10;
   }
 
-  /* 🔹 スマホ用の調整 */
+  /* スマホ用 */
   @media (max-width: 600px) {
     #backButton {
       width: 160px;
       top: 50px;
-      left: 10px; /* 見切れないように少し調整 */
+      left: 10px;
     }
-    
-    /* 【修正】スマホ用の中央画像サイズ */
-    #ffbutton {
-      width: 200px; /* 📱 スマホでのサイズ：300pxから90pxに大幅縮小 */
+
+    #ffbutton,
+    #ffbutton2 {
+      width: 200px;
+      max-width: 70%;
     }
-    
+
     body {
       background-position: center top;
+      gap: 20px;
     }
   }
 </style>
@@ -71,17 +74,24 @@
 
   <img id="backButton" src="assets/back.png" alt="戻る">
 
-  <img id="ffbutton" src="assets/ffbutton.png" alt="次へ">
+  <img id="ffbutton" src="assets/ffbutton.png" alt="FF">
+
+  <img id="ffbutton2" src="assets/ffbutton2.png" alt="IFM Paris">
 
   <script>
-    // 戻るボタンをクリックした時、index（ルート）に戻る
+    // 戻るボタン：index.htmlに戻る
     document.getElementById('backButton').onclick = () => {
       location.href = "index.html";
     };
 
-    // 中央の画像をクリックした時、ff.html に遷移
+    // ffbuttonをクリック
     document.getElementById('ffbutton').onclick = () => {
       location.href = "ff.html";
+    };
+
+    // ffbutton2をクリック
+    document.getElementById('ffbutton2').onclick = () => {
+      location.href = "ifmparis.html";
     };
   </script>
 

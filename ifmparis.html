@@ -1,0 +1,146 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Selected pages</title>
+
+  <style>
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+
+    .scroll-bg {
+      position: relative;
+      width: 100%;
+      min-height: 100vh;
+      background: url('assets/haikei4.png') no-repeat center top;
+      background-size: cover;
+      background-attachment: fixed;
+      padding-top: 180px;
+      padding-bottom: 100px;
+    }
+
+    #backButton {
+      width: 250px;
+      position: fixed;
+      top: 80px;
+      left: 20px;
+      cursor: pointer;
+      z-index: 100;
+    }
+
+    /* タイトル */
+    .page-title {
+      text-align: center;
+      font-family: sans-serif;
+      font-size: 16px;
+      font-weight: normal;
+      margin: 0 0 50px;
+    }
+
+    /* 画像を縦に並べるコンテナ */
+    .object-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 35px;
+      padding: 20px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    /* 画像の共通設定 */
+    .object {
+      display: block;
+      width: 900px;
+      max-width: 95%;
+      height: auto;
+    }
+
+    /* スマホ用調整 */
+    @media (max-width: 700px) {
+      .scroll-bg {
+        padding-top: 130px;
+      }
+
+      #backButton {
+        width: 160px;
+        top: 30px;
+        left: 10px;
+      }
+
+      .page-title {
+        font-size: 12px;
+        margin-bottom: 30px;
+      }
+
+      .object-container {
+        gap: 20px;
+        padding: 10px;
+      }
+
+      .object {
+        width: 90%;
+        max-width: 90%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <img id="backButton" src="assets/back.png" alt="戻る">
+
+  <div class="scroll-bg">
+
+    <h1 class="page-title">Selected pages</h1>
+
+    <div class="object-container">
+      <img src="assets/m1.png" class="object" loading="lazy">
+      <img src="assets/m2.png" class="object" loading="lazy">
+      <img src="assets/m3.png" class="object" loading="lazy">
+      <img src="assets/m4.png" class="object" loading="lazy">
+      <img src="assets/m5.png" class="object" loading="lazy">
+      <img src="assets/m6.png" class="object" loading="lazy">
+      <img src="assets/m7.png" class="object" loading="lazy">
+      <img src="assets/m8.png" class="object" loading="lazy">
+      <img src="assets/m9.png" class="object" loading="lazy">
+      <img src="assets/m10.png" class="object" loading="lazy">
+      <img src="assets/m11.png" class="object" loading="lazy">
+      <img src="assets/m12.png" class="object" loading="lazy">
+      <img src="assets/m13.png" class="object" loading="lazy">
+      <img src="assets/m14.png" class="object" loading="lazy">
+      <img src="assets/m15.png" class="object" loading="lazy">
+      <img src="assets/m16.png" class="object" loading="lazy">
+      <img src="assets/m17.png" class="object" loading="lazy">
+      <img src="assets/m18.png" class="object" loading="lazy">
+      <img src="assets/m19.png" class="object" loading="lazy">
+      <img src="assets/m20.png" class="object" loading="lazy">
+      <img src="assets/m21.png" class="object" loading="lazy">
+      <img src="assets/m22.png" class="object" loading="lazy">
+      <img src="assets/m23.png" class="object" loading="lazy">
+      <img src="assets/m24.png" class="object" loading="lazy">
+      <img src="assets/m25.png" class="object" loading="lazy">
+      <img src="assets/m26.png" class="object" loading="lazy">
+      <img src="assets/m27.png" class="object" loading="lazy">
+      <img src="assets/m28.png" class="object" loading="lazy">
+      <img src="assets/m29.png" class="object" loading="lazy">
+    </div>
+
+  </div>
+
+  <script>
+    // 戻るボタン：magazine.htmlに戻る
+    document.getElementById('backButton').onclick = () => {
+      location.href = "magazine.html";
+    };
+  </script>
+
+</body>
+</html>

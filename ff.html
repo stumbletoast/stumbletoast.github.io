@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -90,9 +91,9 @@
   </div>
     
   <script>
-    // 戻るボタンの処理
+    // 戻るボタン：magazine.htmlに戻る
     document.getElementById('backButton').onclick = () => {
-      location.href = "index.html";
+      location.href = "magazine.html";
     };
 
     // 🔹 画面サイズ（スマホかPCか）を判定する関数
@@ -106,18 +107,15 @@
         let min, max, unit;
 
         if (isMobile()) {
-          // 📱 【修正箇所】スマホ表示のサイズ計算を％に変更
-          // 2枚〜3枚がランダムに横に並び、上下に凸凹とズレるようにサイズを調整します
           unit = '%';
           if (img.classList.contains('large')) {
-            min = 40; // 画面幅に対して約40%（横に2枚並ぶサイズ）
-            max = 45; // 画面幅に対して約45%
+            min = 40;
+            max = 45;
           } else {
-            min = 25; // 画面幅に対して約25%（横に3枚並ぶ小さめサイズ）
-            max = 35; // 画面幅に対して約35%
+            min = 25;
+            max = 35;
           }
         } else {
-          // 💻 PC用のサイズ範囲 (一切変更していません)
           unit = 'px';
           if (img.classList.contains('large')) {
             min = 350; 
